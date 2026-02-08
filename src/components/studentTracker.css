@@ -1,0 +1,109 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+header h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 1px;
+  border-radius: 1px;
+}
+.form input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #903a3a;
+  border-radius: 4px;
+}
+.form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #428e53;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.form button:hover {
+  background-color: #0fe83e;
+}
+.card {
+  border: 1px solid #763838;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(218, 62, 62, 0.1);
+   
+  align-items: center;
+  gap: 015px;
+}
+.card h3 {
+  margin: 0 0 10px 0;
+}
+.card p {
+  margin: 5px 0;
+}
+.card button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ac2432;
+  color: rgb(203, 203, 211);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.no-students {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}
+.no-students img {
+  margin-top: 10px;
+  width: 150px;
+  opacity: 0.5;
+}
+.card button {
+  background-color: #007bff;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+.card button.delete {
+  background-color: #760913;
+}
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.details h3 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.details p {
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.details {
+  margin: left 0;
+}
