@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./StudentTracker.css";
 import StudentCard from "./StudentCard";
 import StudentForm from "./StudentForm";
@@ -15,28 +15,23 @@ export interface Student {
 }
 
 const StudentTrackerApp = () => {
-  const [students, setStudents] = useState<Student[]>([
-    {
-      id: 1,
-      name: "Ashish Baduwal",
-      age: 20,
-      grade: "A",
-      phone: "123-456-7890",
-      email: "ashishbaduwal@example.com",
-      gender: "male",
-      imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
-    },
-    {
-      id: 2,
-      name: "Niraj Baduwal",
-      age: 22,
-      grade: "B",
-      phone: "987-654-3210",
-      email: "nirajbaduwal@example.com",
-      gender: "male",
-      imageUrl: "https://randomuser.me/api/portraits/women/1.jpg",
-    },
-  ]);
+  const [students, setStudents] = useState<Student[]>(getData() ?? []);
+
+
+  function getData(){
+    const response= localStorage.getItem("Students")
+    
+    if(response){
+      return JSON.parse(response);
+    }
+
+  }
+
+  function syncLocalStorage(){
+    localStorage.setItem("Students",JSON.stringify(students))
+  }
+
+  useEffect(syncLocalStorage ,[students])
 
   const handleAdd = (newStudent: Student) => {
     setStudents((prevstudents) => [...prevstudents, newStudent]);

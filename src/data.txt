@@ -1,0 +1,22 @@
+[
+    {
+      id: 1,
+      name: "Ashish Baduwal",
+      age: 20,
+      grade: "A",
+      phone: "123-456-7890",
+      email: "ashishbaduwal@example.com",
+      gender: "male",
+      imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+    },
+    {
+      id: 2,
+      name: "Niraj Baduwal",
+      age: 22,
+      grade: "B",
+      phone: "987-654-3210",
+      email: "nirajbaduwal@example.com",
+      gender: "male",
+      imageUrl: "https://randomuser.me/api/portraits/women/1.jpg",
+    },
+  ]
