@@ -1,32 +1,21 @@
 import { useState } from "react";
 import "./StudentTracker.css";
-1;
+import StudentCard from "./StudentCard";
+import StudentForm from "./StudentForm";
 
-const StudentCard = ({ students, handleDelete }) => (
-  <div className="card">
-    {students.imageUrl ? (
-      <img src={students.imageUrl} alt={students.name} className="profile-pic" />
-    ) : (
-      <div className="profile-pic"></div>
-    )}
-    <div className="profile-pic"></div>
-    <div className="details">
-      <h3>{students.name}</h3>
-      <p>Age: {students.age}</p>
-      <p>Grade: {students.grade}</p>
-      <p>Phone: {students.phone}</p>
-      <p>Email: {students.email}</p>
-      <p>Gender: {students.gender}</p>
-
-      <button onClick={() => handleDelete(students.id)} className="dlt-btn">
-        delete
-      </button>
-    </div>
-  </div>
-);
+export interface Student {
+  id: number;
+  name: string;
+  age: number;
+  grade: string;
+  phone: string;
+  email: string;
+  gender: string;
+  imageUrl?: string;
+}
 
 const StudentTrackerApp = () => {
-  const [students, setStudents] = useState<students[]>([
+  const [students, setStudents] = useState<Student[]>([
     {
       id: 1,
       name: "Ashish Baduwal",
@@ -48,38 +37,10 @@ const StudentTrackerApp = () => {
       imageUrl: "https://randomuser.me/api/portraits/women/1.jpg",
     },
   ]);
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [grade, setGrade] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("others");
-  const [imageUrl, setImageUrl] = useState("");
 
-  const addStudent = () => {
-    if (!name || !age || !grade || !phone || !email || !gender || !imageUrl) {
-      const newStudent = {
-        id: students.length + 1,
-        name,
-        age,
-        grade,
-        phone,
-        email,
-        gender,
-        imageUrl,
-      };
-      setStudents([...students, newStudent]);
-
-      setName("");
-      setAge("");
-      setGrade("");
-      setPhone("");
-      setEmail("");
-      setGender("others");
-      setImageUrl(newStudent.imageUrl || "");
-    }
+  const handleAdd = (newStudent: Student) => {
+    setStudents((prevstudents) => [...prevstudents, newStudent]);
   };
- 
 
   const handleDelete = (id: number) => {
     setStudents(students.filter((students) => students.id !== id));
@@ -91,59 +52,13 @@ const StudentTrackerApp = () => {
         <h1>Student Tracker</h1>
       </header>
 
-      <div className="form">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Age"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Grade"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-        <label>
-          Gender:
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
-            <option value="others">Others</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </label>
-        <button onClick={addStudent}>Add Student</button>
-      </div>
+      <StudentForm handleAdd={handleAdd} students={students} />
       <div className="student-list">
         <h2>Student List</h2>
         {students.map((student) => (
           <StudentCard
             key={student.id}
-            students={student}
+            student={student}
             handleDelete={handleDelete}
           />
         ))}
